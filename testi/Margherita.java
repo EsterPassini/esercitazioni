@@ -8,6 +8,13 @@ public class Margherita {
     private int numPetali;
     private String colore;
 
+    //IR: colore != null
+    //    numPetali >= 0
+
+    //AF: AF(numPetali, colore) =
+    //    una margherita tale che:
+    //    this.colore == colore && this.numPetali == numPetali
+
 //COSTRUTTORI
 
     //EFFECTS: genera un istanza margherita del colore passato in imput
@@ -22,8 +29,13 @@ public class Margherita {
         this.colore = "bianco";
     }
 
-    //EFFECTS: genera un istanza margherita del colore, e dal numero di petali passati in imput
+    //EFFECTS: genera un istanza margherita del colore, e dal numero di petali passati in imput se il numPetali è >=0,
+    //          se numPetali<0 solleva un eccezione del tipo IllegalArgumentException
     public Margherita(int numPetali, String colore){
+        if (this.numPetali < 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.numPetali = numPetali;
         this.colore = colore;
     }
@@ -54,7 +66,7 @@ public class Margherita {
 //MODIFICATORI
     //EFFECTS: ritorna il risultato di un m'ama non m'ama fatto con this.margherita
     //         di this.margherita viene modificato il numero di petali, viene posto a zero.
-    //          se this.margherita ha 0 petali viene sollevata un eccezione del tipo ZeroPetalsException
+    //         se this.margherita ha 0 petali viene sollevata un eccezione del tipo ZeroPetalsException
     //MODIFIES: this
     public boolean amaNonAma(){
 
@@ -81,6 +93,6 @@ public class Margherita {
         System.out.println("num petali m1: " + m1.getNumPetali());
 
         Margherita m3 = new Margherita(0, "rosa");
-       // System.out.println("Mi ama? m3 risponde: " + m3.amaNonAma());
+        System.out.println("Mi ama? m3 risponde: " + m3.amaNonAma());
     }
 }
